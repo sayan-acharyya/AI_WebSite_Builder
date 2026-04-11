@@ -47,6 +47,16 @@ export const googleAuth = async (req, res) => {
 
 export const logout = async (req, res) => {
     try {
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: false,
+            sameSite: "strict"
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: "Logged out successfully"
+        });
 
     } catch (error) {
         return res.status(500).json({
@@ -54,4 +64,4 @@ export const logout = async (req, res) => {
             message: `error in logout ${error}`
         });
     }
-}
+};
