@@ -73,7 +73,9 @@ const Home = () => {
                 </motion.p>
 
 
-                <button className="px-10 py-4 mt-8 rounded-xl font-semibold text-white 
+                <button
+                    onClick={() => setOpenLogin(true)}
+                    className="px-10 py-4 mt-8 rounded-xl font-semibold text-white 
 bg-gradient-to-r from-purple-500 to-blue-500 
 hover:scale-105 hover:shadow-[0_0_25px_rgba(99,102,241,0.6)] 
 transition duration-300">

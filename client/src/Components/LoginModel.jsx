@@ -90,11 +90,36 @@ const LoginModel = ({ open, onClose }) => {
                                     <span className="z-10">Continue with Google</span>
                                 </motion.button>
 
-                            </div>
+                                <div className="flex items-center my-10 gap-4 w-full">
+                                    <div className="flex-1 h-px bg-zinc-700" />
 
+                                    <span className="text-xs text-zinc-400 px-3 py-1 rounded-full border border-zinc-700 bg-zinc-900/50 tracking-wider">
+                                        🔒 Secure Login
+                                    </span>
+
+                                    <div className="flex-1 h-px bg-zinc-700" />
+                                </div>
+
+                                <p className="text-xs text-zinc-500 leading-relaxed   ">
+                                    By continuing, you agree to our{" "}
+
+                                    <span className="underline underline-offset-4 cursor-pointer 
+  hover:text-white transition">
+                                        Terms of Service
+                                    </span>{" "}
+
+                                    and{" "}
+
+                                    <span className="underline underline-offset-4 cursor-pointer 
+  hover:text-white transition">
+                                        Privacy Policy
+                                    </span>
+                                </p>
+
+
+                            </div>
                         </div>
                     </motion.div>
-
                 </motion.div>
             )}
         </AnimatePresence>
@@ -105,4 +130,3 @@ export default LoginModel
 
 
 
-//2:03:10
