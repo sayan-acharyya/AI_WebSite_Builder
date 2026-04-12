@@ -1,13 +1,19 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Home from './Pages/Home'
+import toast, { Toaster } from 'react-hot-toast';
+
+
+export const serverUrl = "http://localhost:8000/api"
+
 const App = () => {
   return (
     <>
       <BrowserRouter>
         <Routes>
-            <Route path='/' element={<Home/>}/>
+          <Route path='/' element={<Home />} />
         </Routes>
+        <Toaster position="top-center" />
       </BrowserRouter>
     </>
   )

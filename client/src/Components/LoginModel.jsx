@@ -1,10 +1,33 @@
 import React from 'react'
 import { AnimatePresence, motion } from "motion/react"
 import { SiGooglegemini } from 'react-icons/si'
+import { signInWithPopup } from 'firebase/auth'
+import { auth, provider } from '../firebase'
+import axios from "axios";
+import { serverUrl } from '../App'
+import toast from 'react-hot-toast'
 
 const LoginModel = ({ open, onClose }) => {
-    return (
 
+    const handleGoogleAuth = async () => {
+        try {
+            const result = await signInWithPopup(auth, provider)
+            const { data } = await axios.post(`${serverUrl}/auth/google`, {
+                name: result.user.displayName,
+                email: result.user.email,
+                avatar: result.user.photoURL
+            }, { withCredentials: true })
+            console.log(data);
+            toast.success("Lohin Successfully")
+
+
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
+    return (
         <AnimatePresence>
             {open && (
                 <motion.div
@@ -63,6 +86,7 @@ const LoginModel = ({ open, onClose }) => {
                                 </h2>
 
                                 <motion.button
+                                    onClick={handleGoogleAuth}
                                     whileHover={{ scale: 1.03 }}
                                     whileTap={{ scale: 0.97 }}
                                     className="group relative w-full h-12 rounded-xl 
@@ -130,3 +154,4 @@ export default LoginModel
 
 
 
+//2:23:14
