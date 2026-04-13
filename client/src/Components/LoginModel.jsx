@@ -6,8 +6,13 @@ import { auth, provider } from '../firebase'
 import axios from "axios";
 import { serverUrl } from '../App'
 import toast from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
+import { setUserData } from '../redux/slices/userSlice'
 
 const LoginModel = ({ open, onClose }) => {
+
+    const dispatch = useDispatch();
+
 
     const handleGoogleAuth = async () => {
         try {
@@ -17,8 +22,10 @@ const LoginModel = ({ open, onClose }) => {
                 email: result.user.email,
                 avatar: result.user.photoURL
             }, { withCredentials: true })
-            console.log(data);
-            toast.success("Lohin Successfully")
+            dispatch(setUserData(data))
+            onClose();
+            window.location.reload();
+            
 
 
         } catch (error) {
@@ -154,4 +161,3 @@ export default LoginModel
 
 
 
- 
