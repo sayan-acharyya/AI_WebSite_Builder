@@ -9,6 +9,7 @@ import axios from 'axios';
 import { serverUrl } from '../App';
 import { setUserData } from '../redux/slices/userSlice';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 const Home = () => {
     const highlights = [
         "AI Generated Code",
@@ -29,13 +30,14 @@ const Home = () => {
             dispatch(setUserData(null));
             setOpenProfile(false);
             window.location.reload();
-             
+
         } catch (error) {
             console.log(error);
 
         }
     }
 
+    const navigate = useNavigate();
 
     return (
         <div className='relative min-h-screen bg-[#040404] text-white overflow-hidden'>
@@ -132,7 +134,9 @@ const Home = () => {
 
                                             {/* 📊 Menu */}
                                             <div className="py-2">
-                                                <button className="w-full px-4 py-2 text-left text-sm 
+                                                <button
+                                                    onClick={() => navigate("/dashboard")}
+                                                    className="w-full px-4 py-2 text-left text-sm 
         text-zinc-300 hover:bg-white/5 hover:text-white transition">
                                                     Dashboard
                                                 </button>
@@ -186,14 +190,23 @@ const Home = () => {
                 </motion.p>
 
 
-                <button
+                {userData ? <button
+                    onClick={() => navigate("/dashboard")}
+                    className="px-10 py-4 mt-8 rounded-xl font-semibold text-white 
+bg-gradient-to-r from-purple-500 to-blue-500 
+hover:scale-105 hover:shadow-[0_0_25px_rgba(99,102,241,0.6)] 
+transition duration-300">
+
+                    Go to Dashboard
+                </button> : <button
                     onClick={() => setOpenLogin(true)}
                     className="px-10 py-4 mt-8 rounded-xl font-semibold text-white 
 bg-gradient-to-r from-purple-500 to-blue-500 
 hover:scale-105 hover:shadow-[0_0_25px_rgba(99,102,241,0.6)] 
 transition duration-300">
+
                     Get Started
-                </button>
+                </button>}
 
             </section>
 
