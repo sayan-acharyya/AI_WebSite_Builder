@@ -12,7 +12,7 @@ const extractJSON = (text) => {
         return JSON.parse(cleaned);
     } catch (err) {
         throw new Error("Invalid JSON from AI: " + text);
-    }      
+    }               
 };
 
 export const generatedemo = async (req, res) => {
